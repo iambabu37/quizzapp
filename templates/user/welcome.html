@@ -1,0 +1,64 @@
+{% extends 'main.html'%}
+
+{% block title %}
+<title> Welcome </title>
+{% endblock %}
+
+
+{% block welcome %}
+
+{% if messages %}
+
+    {% for message in messages %}
+    <div class="{{message.tags}}">{{message}}</div>
+    {% endfor %}
+
+{% endif %}
+
+
+<div  class="col-8 offset-2">
+    <div  class="card">
+        <div  class="card-body">
+            <div  class="row">
+                <div  class="col-12">
+                    <h6  class="text-uppercase font-weight-bold">Read the below instructions
+                        carefully : </h6>
+                    <hr >
+                    <ul  class="inst-ul">
+                        <li > Take our 20 minute online assessment to help us understand your skill
+                            composition and to which of our many roles you currently are suitable to. </li>
+                        <li > The quiz contains 40 questions related to basic IT and programming
+                            (Javascript, HTML, python, shell, Java). </li>
+                        <li > The proportion of questions from each of this compartment will vary
+                            according to the position you have applied to. </li>
+                        <li > For example, <ul  class="inst-sub-ul">
+                                <li  class="inst-sub-li"> IT and Software developer position would
+                                    have more programming questions. </li>
+                            </ul>
+                        </li>
+                        <li > The test has been designed in a way the questions are at varying
+                            levels of difficulty. </li>
+                        <li > There will be Multiple Choice and Subjective questions and you will
+                            have the possibility to explain your answers for all questions. </li>
+                        <li > There is no negative marking (a wrong answer will not be graded with
+                            negative marks) however, more difficult questions will fetch more marks. </li>
+                        <li > The quiz is timed. So you will have <b 
+                                class="text-danger">20 minutes</b> to answer <b 
+                                class="text-danger">40 questions</b>. Your timer will start immediately when click on
+                            the START TEST button. </li>
+                        <li > Good luck. Please click <b >START TEST</b> to
+                            start the test. </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div  class="card-footer">
+            <button 
+                class="btn btn-sm btn-primary float-right"><a href="{%url 'question' %}">START TEST</a></button></div>
+    </div>
+</div>
+<div  class="col-2"></div>
+
+
+
+{% endblock%}

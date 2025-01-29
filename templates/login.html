@@ -1,0 +1,71 @@
+{% extends 'main.html' %}
+
+
+
+{% block title %}
+<title> Login Page
+</title>
+{% endblock %}
+
+{% block login %}
+
+<style>
+    .signup {
+        padding: 2em;
+        height: 70%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(156, 155, 155, 0.3);
+    }
+
+    .signupform {
+
+        height: 68vh;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .signupform input {
+        margin-bottom: 1em;
+        border-radius: 20px;
+        width: 30vw;
+        padding: 1em;
+
+    }
+
+    .signupform button {
+        background-color: blue;
+        border: none;
+        font-size: 1.2em;
+        border-radius: 20px;
+        /* border-radius: 50%; */
+        width: 20vw;
+        height: 3em;
+        font-weight: bold;
+        font-size: 1.5em;
+    }
+</style>
+
+{% if messages %}
+
+    {% for message in messages %}
+        <div class="{{ message.tags }}"> {{ message }}</div>
+    {% endfor %}
+
+{% endif %}
+
+
+<div class="signup">
+    <form class="signupform" action="{% url 'login' %} " method="post">
+        {% csrf_token %}
+        <input name='username' type="text" placeholder="username">
+        <input name='password' type="password" placeholder="Password ">
+        <button><a href="">Submit</a></button>
+    </form>
+</div>
+{% endblock %}

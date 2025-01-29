@@ -1,0 +1,52 @@
+<style>
+    nav button {
+        position: absolute;
+        right: 2em;
+        border: none;
+        padding: 0.5em;
+        font-size: 18px;
+        width: 100px;
+        text-align: center;
+        font-weight: bold;
+        background-color: blue;
+        border-radius: 20px;
+
+    }
+    #login {
+        position: absolute;
+        right: 10em;
+        border: none;
+        padding: 0.5em;
+        font-size: 18px;
+        width: 100px;
+        text-align: center;
+        font-weight: bold;
+        background-color: blue;
+        border-radius: 20px;
+
+    }
+
+    nav button a {
+        text-align: center;
+    }
+</style>
+
+
+<nav style='color: blue; position: relative;'
+    class="navbar d-flex flex-row align-items-center justify-content-start p-3 h-20">
+    <h1 class="">logo </h1>
+    <h4 class='ms-3'>SyncBio Techonology quiz test </h4>
+
+    {% if request.user.is_authenticated %}
+
+    <button class=""> <a href="{% url 'logout' %}"> LogOut</a></button>
+    
+
+    {% else %}
+
+    <button id = "login" class=""> <a href="{% url 'login' %}"> LogIn </a></button>
+    <button class=""> <a href="{% url 'signup' %}"> SignUp</a></button>
+
+    {% endif %}
+
+</nav>

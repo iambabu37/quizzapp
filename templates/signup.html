@@ -1,0 +1,136 @@
+{% extends 'main.html' %}
+
+{% block title %}
+<title>Sign Up</title>
+{% endblock %}
+
+{% block signup %}
+<style>
+    .signup {
+        padding: 2em;
+        height: 70%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(156, 155, 155, 0.3);
+    }
+    .signupform {
+        height: 68vh;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .signupform input {
+        margin-bottom: 1em;
+        border-radius: 20px;
+        width: 30%;
+        padding: 1em;
+    }
+    .signupform button {
+        background-color: blue;
+        border: none;
+        border-radius: 20px;
+        width: 20%;
+        height: 3em;
+        font-weight: bold;
+        font-size: 1.5em;
+    }
+    .password-container {
+        display: flex;
+        flex-direction: row;
+        /* align-items: center; */
+        align-content: center;
+        justify-content: center;
+        width: 30%;
+    }
+
+    .password-container input {
+        flex : 3;
+    }
+    .password-container button{
+        flex :1;
+    }
+    .password-toggle {
+        /* right: 10px; */
+        height: 3.7em !important;
+        border: none;
+        margin-left: -5px;
+        cursor: pointer;
+        font-size: 1em !important;
+        background-color: aliceblue !important;
+    }
+</style>
+
+<div class="message">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+</div>
+
+<div class="signup">
+    <form class="signupform" action="{% url 'signup' %}" method="post">
+        {% csrf_token %}
+
+        <input name='name' type="text" placeholder="Username" required>
+        <input name='email' type="email" placeholder="Email address" required>
+        
+        <!-- Password with Toggle Visibility -->
+        <div class="password-container">
+            <input 
+                id="password" 
+                name='password' 
+                type="password" 
+                placeholder="Enter your password" 
+                required
+            >
+            <button 
+                type="button" 
+                class="password-toggle" 
+                onclick="togglePasswordVisibility('password')"
+            >
+                👁️
+            </button>
+        </div>
+
+        <div class="password-container">
+            <input 
+                id="repassword" 
+                name='repassword' 
+                type="password" 
+                placeholder="Re-enter your password" 
+                required
+            >
+            <button 
+                type="button" 
+                class="password-toggle" 
+                onclick="togglePasswordVisibility('repassword')"
+            >
+                👁️
+            </button>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<script>
+function togglePasswordVisibility(inputId) {
+    const passwordInput = document.getElementById(inputId);
+    const toggleButton = passwordInput.nextElementSibling;
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        toggleButton.innerHTML = "🙈"; // Hide icon
+    } else {
+        passwordInput.type = "password";
+        toggleButton.innerHTML = "👁️"; // Show icon
+    }
+}
+</script>
+
+{% endblock %}
