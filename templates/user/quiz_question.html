@@ -1,0 +1,66 @@
+
+{% extends 'main.html' %}
+
+
+{% block questions %}
+
+<!-- quiz_question.html -->
+
+
+    <script>
+        // Countdown Timer
+        let timeRemaining = { time_limit };
+        const timerElement = document.getElementById('time');
+        const form = document.getElementById('quiz-form');
+
+        const countdownTimer = setInterval(() => {
+            timeRemaining--;
+            timerElement.textContent = timeRemaining;
+
+            if (timeRemaining <= 0) {
+                clearInterval(countdownTimer);
+                form.submit(); // Auto submit when time expires
+            }
+        }, 1000);
+    </script>
+
+
+<div class="quiz-container">
+    <h2>{{ question.text }}</h2>
+    
+    <form method="POST" id="quizForm">
+        {% csrf_token %}
+        {% for option in options %}
+            <div>
+                <input 
+                    type="radio" 
+                    name="option" 
+                    value="{{ option.id }}" 
+                    id="option_{{ option.id }}"
+                    required
+                >
+                <label for="option_{{ option.id }}">
+                    {{ option.text }}
+                </label>
+            </div>
+        {% endfor %}
+        
+        <p>Question {{ current_question }} of {{ total_questions }}</p>
+        
+        <button type="submit">
+            {% if current_question == total_questions %}
+                Finish Quiz
+            {% else %}
+                Next Question
+            {% endif %}
+        </button>
+    </form>
+</div>
+
+<script>
+    // Auto submission after 2 minutes
+    setTimeout(() => {
+        document.getElementById('quizForm').submit();
+    }, 120000);  // 2 minutes
+</script>
+{% endblock %}

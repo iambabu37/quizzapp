@@ -7,6 +7,37 @@
 
 {% block question %}
 
-<h1>Question Page </h1>
+<div class="quiz-container">
+    {% for question in questions %}
+
+    <h2>{{ question.question }}</h2>
+    <hr>
+    <form method="POST" id="quizForm">
+        {% csrf_token %}
+        <div>
+            <input type="radio" name="option" value="{{ option.id }}" id="option_{{ option.id }}" required>
+            <label for="option_{{ option.id }}">
+                {{ question.text }}
+            </label>
+        </div>
+        {% endfor %}
+        <p>Question {{ current_question }} of {{ total_questions }}</p>
+        <button type="submit">
+            {% if current_question == total_questions %}
+            Finish Quiz
+            {% else %}
+            Next Question
+            {% endif %}
+        </button>
+    </form>
+
+    {% endfor %}
+</div>
+<script>
+    // Auto submission after 2 minutes
+    setTimeout(() => {
+        document.getElementById('quizForm').submit();
+    }, 120000);  // 2 minutes
+</script>
 
 {% endblock %}

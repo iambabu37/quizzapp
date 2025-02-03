@@ -29,6 +29,35 @@
 <body>
     <div class="container">
         {% include 'navbar.html' %}
+
+
+          <!-- space for welcome page -->
+
+          {% block welcome %}
+          {% endblock %}
+
+
+          <!-- space for result page -->
+          {% block result %}
+          {% endblock %}
+
+
+
+          {% block content %}
+
+          {% endblock %}
+          <!-- space for question  -->
+
+
+          {% block questions %}
+
+          {% endblock %}
+
+          <!-- space for the quiz  -->
+
+          {% block quiz %}
+
+          {% endblock %}
     </div>
     <div class="container-fluid">
         <main>
@@ -37,6 +66,8 @@
 
 
             {% endblock %}
+
+
 
             <!-- space for the signup  -->
             {% block signup %}
@@ -51,23 +82,8 @@
             {% endblock %}
 
 
-            <!-- space for welcome page -->
+          
 
-            {% block welcome %}
-            {% endblock %}
-
-
-            <!-- space for result page -->
-            {% block result %}
-            {% endblock %}
-
-
-            <!-- space for question  -->
-
-
-            {% block question %}
-
-            {% endblock %}
 
         </main>
     </div>

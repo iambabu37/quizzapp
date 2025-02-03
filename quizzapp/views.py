@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login as auth_login,logout
+from user.models import *
 
 def signup(request):
     if request.method == "POST":
@@ -75,7 +76,7 @@ def login(request):
             # Login successful
             auth_login(request, user)
             messages.success(request, "Login successful!")
-            return redirect('welcome')  # Replace with your homepage URL name
+            return redirect('quizlist')  # Replace with your homepage URL name
         else:
             # Login failed
             messages.error(request, "Invalid username or password")
@@ -88,3 +89,8 @@ def logoutuser(reqeust):
     messages.success(reqeust,'Log out successfully ')
     logout(reqeust)
     return redirect('login')
+
+
+def quizlist(request):
+    quizzes = Quiz.objects.all()
+    return render(request,'quiz.html',{"quizzes":quizzes})

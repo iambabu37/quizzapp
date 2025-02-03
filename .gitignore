@@ -1,1 +1,5 @@
 django_env/
+quizapp_server.sql
+data.py
+mysql1.py
+*.xlsx

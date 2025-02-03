@@ -23,5 +23,6 @@ urlpatterns = [
     path('login/',views.login ,name = 'login'),
     path('logout/',views.logoutuser ,name = 'logout'),
     path('',views.signup , name = 'signup'),
+    path('quizlist/',views.quizlist,name = 'quizlist'),
     path('user/' , include('user.urls'))
 ]
